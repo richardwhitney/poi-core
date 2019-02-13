@@ -12,6 +12,9 @@ const server = Hapi.server({
   host: "localhost"
 });
 
+// Load the route
+server.route(require('./routes'));
+
 // Init function to start server
 async function init() {
   await server.start();
