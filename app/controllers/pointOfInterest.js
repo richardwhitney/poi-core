@@ -1,7 +1,9 @@
+'use strict';
+
 const PointOfInterest = {
   home: {
     handler: function (request, h) {
-      return h.file('./app/view/main.html');
+      return h.view('main', { title: 'Points of Interest'});
     }
   }
 }

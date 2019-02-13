@@ -25,7 +25,7 @@ async function init() {
       hbs: require('handlebars')
     },
     relativeTo: __dirname,
-    path: '/app/views',
+    path: './app/views',
     isCached: false
   });
 
