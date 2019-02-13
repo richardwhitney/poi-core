@@ -1,3 +1,3 @@
-const Controller = require('./controllers/controller');
+const PointofInterest = require('./app/controllers/pointOfInterest');
 
-module.exports = [{ method: 'GET', path: '/', config: Controller.index}];
+module.exports = [{ method: 'GET', path: '/', config: PointofInterest.home}];
