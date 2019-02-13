@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "hapi": "^18.1.0",
-    "inert": "^5.1.2"
+    "inert": "^5.1.2",
+    "mongoose": "^5.4.12"
   },
   "devDependencies": {
     "prettier": "^1.16.4"
