@@ -2,26 +2,27 @@
  * Entry point for the app
  *
  */
-'use strict';
+"use strict";
 
-const Hapi = require('hapi');
+const Hapi = require("hapi");
 
 // Create local server object
 const server = Hapi.server({
-    port: 3000,
-    host: 'localhost'
+  port: 3000,
+  host: "localhost"
 });
 
 // Init function to start server
 async function init() {
-    await server.start();
-    console.log(`Server running at: ${server.info.uri}`);
+  await server.start();
+  console.log(`Server running at: ${server.info.uri}`);
 }
 
 // Catch and log errors on server start. Exit app
-process.on('unhandledRejection', err => {
-    console.log(err);
-    process.exit(1);
+process.on("unhandledRejection", err => {
+  console.log(err);
+  process.exit(1);
 });
 
 init();
+
