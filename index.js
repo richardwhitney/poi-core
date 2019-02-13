@@ -12,12 +12,25 @@ const server = Hapi.server({
   host: "localhost"
 });
 
-// Load the route
-server.route(require('./routes'));
+
 
 // Init function to start server
 async function init() {
   await server.register(require('inert'));
+  await server.register(require('vision'));
+
+  // Configure handlebars
+  server.views({
+    engines: {
+      hbs: require('handlebars')
+    },
+    relativeTo: __dirname,
+    path: '/app/views',
+    isCached: false
+  });
+
+  // Load the route
+  server.route(require('./routes'));
   await server.start();
   console.log(`Server running at: ${server.info.uri}`);
 }
