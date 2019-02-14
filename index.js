@@ -12,12 +12,15 @@ const server = Hapi.server({
   host: "localhost"
 });
 
-
+server.bind({
+  users: {},
+});
 
 // Init function to start server
 async function init() {
   await server.register(require('inert'));
   await server.register(require('vision'));
+  await server.register(require('hapi-auth-cookie'));
 
   // Configure handlebars
   server.views({
@@ -30,6 +33,18 @@ async function init() {
     partialsPath: './app/views/partials',
     layout: true,
     isCached: false
+  });
+
+  server.auth.strategy('standard', 'cookie', {
+    password: 'secretpasswordnotrevealedtoanyone',
+    cookie: 'poi-cookie',
+    isSecure: false,
+    ttl: 24 * 60 * 60 * 1000,
+  });
+
+  server.auth.default({
+    mode: 'required',
+    strategy: 'standard',
   });
 
   // Load the route
