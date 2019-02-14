@@ -26,6 +26,9 @@ async function init() {
     },
     relativeTo: __dirname,
     path: './app/views',
+    layoutPath: './app/views/layouts',
+    partialsPath: './app/views/partials',
+    layout: true,
     isCached: false
   });
 
