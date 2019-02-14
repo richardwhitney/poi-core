@@ -1,9 +1,12 @@
-const PointOfInterest = require('./app/controllers/pointOfInterest');
+const Accounts = require('./app/controllers/accounts');
 
 module.exports = [
-  { method: 'GET', path: '/', config: PointOfInterest.home},
-  { method: 'GET', path: '/signup', config: PointOfInterest.signup},
-  { method: 'GET', path: '/login', config: PointOfInterest.login},
+  { method: 'GET', path: '/', config: Accounts.index},
+  { method: 'GET', path: '/signup', config: Accounts.showSignup},
+  { method: 'GET', path: '/login', config: Accounts.showLogin},
+  { method: 'GET', path: '/logout', config: Accounts.logout},
+  { method: 'POST', path: '/signup', config: Accounts.signup},
+  { method: 'POST', path: '/login', config: Accounts.login},
   { method: 'GET',
     path: '/{param*}',
     handler: {
