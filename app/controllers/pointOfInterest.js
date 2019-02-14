@@ -10,6 +10,11 @@ const PointOfInterest = {
     handler: function (request, h) {
       return h.view('signup', { title: 'Sign up for Points of Interest'});
     }
+  },
+  login: {
+    handler: function (request, h) {
+      return h.view('login', { title: 'Login to Points of Interest'});
+    }
   }
 }
 
