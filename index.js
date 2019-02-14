@@ -40,6 +40,7 @@ async function init() {
     cookie: 'poi-cookie',
     isSecure: false,
     ttl: 24 * 60 * 60 * 1000,
+    redirectTo: '/'
   });
 
   server.auth.default({
