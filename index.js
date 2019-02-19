@@ -6,15 +6,12 @@
 
 const Hapi = require("hapi");
 const dotenv = require('dotenv').config();
+require('./app/models/db');
 
 // Create local server object
 const server = Hapi.server({
   port: 3000,
   host: "localhost"
-});
-
-server.bind({
-  users: {},
 });
 
 // Init function to start server
