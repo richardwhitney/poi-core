@@ -5,6 +5,7 @@
 "use strict";
 
 const Hapi = require("hapi");
+const dotenv = require('dotenv').config();
 
 // Create local server object
 const server = Hapi.server({
@@ -36,8 +37,8 @@ async function init() {
   });
 
   server.auth.strategy('standard', 'cookie', {
-    password: 'secretpasswordnotrevealedtoanyone',
-    cookie: 'poi-cookie',
+    password: process.env.cookie_password,
+    cookie: process.env.cookie_name,
     isSecure: false,
     ttl: 24 * 60 * 60 * 1000,
     redirectTo: '/'
