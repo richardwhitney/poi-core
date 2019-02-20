@@ -12,6 +12,7 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings},
 
   { method: 'GET', path: '/home', config: Dashboard.home},
+  { method: 'POST', path: '/addpoint', config: Dashboard.addPointOfInterest},
 
   { method: 'GET',
     path: '/{param*}',
