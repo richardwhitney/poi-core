@@ -13,6 +13,7 @@ module.exports = [
 
   { method: 'GET', path: '/home', config: Dashboard.home},
   { method: 'POST', path: '/addpoint', config: Dashboard.addPointOfInterest},
+  { method: 'GET', path: '/poi/{id}', config: Dashboard.pointDetails},
 
   { method: 'GET',
     path: '/{param*}',

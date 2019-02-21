@@ -22,6 +22,16 @@ const Dashboard = {
       await newPoint.save();
       return h.redirect('/home');
     }
+  },
+  pointDetails: {
+    handler: async function(request, h) {
+      console.log("Point selected: " + request.params.id);
+      const point = await PointOfInterest.findById(request.params.id);
+      return h.view('poi', {
+        title: 'Explore Island of Ireland',
+        point: point
+      });
+    }
   }
 };
 
