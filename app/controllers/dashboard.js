@@ -1,6 +1,7 @@
 'use strict';
 
 const PointOfInterest = require('../models/poi');
+const Joi = require('joi');
 
 const Dashboard = {
   home: {
