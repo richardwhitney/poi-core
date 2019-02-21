@@ -84,15 +84,20 @@ const Accounts = {
   },
   updateSettings: {
     handler: async function (request, h) {
-      const userEdit = request.payload;
-      const id = request.auth.credentials.id;
-      const user = await User.findById(id);
-      user.firstName = userEdit.firstName;
-      user.lastName = userEdit.lastName;
-      user.email = userEdit.email;
-      user.password = userEdit.password;
-      await user.save();
-      return h.redirect('/settings');
+      try {
+        const userEdit = request.payload;
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id);
+        user.firstName = userEdit.firstName;
+        user.lastName = userEdit.lastName;
+        user.email = userEdit.email;
+        user.password = userEdit.password;
+        await user.save();
+        return h.redirect('/settings');
+      } catch (e) {
+        return h.view('main', { errors:[{ message: e.message}]});
+      }
+
     }
   },
 };

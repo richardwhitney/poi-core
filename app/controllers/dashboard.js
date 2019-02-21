@@ -14,23 +14,31 @@ const Dashboard = {
   },
   addPointOfInterest: {
     handler: async function(request, h) {
-      const data = request.payload;
-      const newPoint = new PointOfInterest({
-        name: data.name,
-        description: data.description
-      });
-      await newPoint.save();
-      return h.redirect('/home');
+      try {
+        const data = request.payload;
+        const newPoint = new PointOfInterest({
+          name: data.name,
+          description: data.description
+        });
+        await newPoint.save();
+        return h.redirect('/home');
+      } catch (e) {
+        return h.view('main', { errors:[{ message: e.message}]});
+      }
     }
   },
   pointDetails: {
     handler: async function(request, h) {
-      console.log("Point selected: " + request.params.id);
-      const point = await PointOfInterest.findById(request.params.id);
-      return h.view('poi', {
-        title: 'Explore Island of Ireland',
-        point: point
-      });
+      try {
+        console.log("Point selected: " + request.params.id);
+        const point = await PointOfInterest.findById(request.params.id);
+        return h.view('poi', {
+          title: 'Explore Island of Ireland',
+          point: point
+        });
+      } catch (e) {
+        return h.view('main', { errors:[{ message: e.message}]});
+      }
     }
   }
 };

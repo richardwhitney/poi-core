@@ -5,7 +5,14 @@
 "use strict";
 
 const Hapi = require("hapi");
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv');
+const result = dotenv.config();
+
+if (result.error) {
+  console.log(result.error.message);
+  process.exit(1);
+}
+
 require('./app/models/db');
 
 // Create local server object
