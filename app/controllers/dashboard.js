@@ -14,6 +14,23 @@ const Dashboard = {
     }
   },
   addPointOfInterest: {
+    validate: {
+      payload: {
+        name: Joi.string().required(),
+        description: Joi.string().required()
+      },
+      options: {
+        abortEarly: false
+      },
+      failAction: async function (request, h, error) {
+        const pointsOfInterest = await PointOfInterest.find();
+        return h.view('dashboard', {
+          title: 'Add island error',
+          points: pointsOfInterest,
+          errors: error.details
+        }).takeover().code(400);
+      }
+    },
     handler: async function(request, h) {
       try {
         const data = request.payload;
