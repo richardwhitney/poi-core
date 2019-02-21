@@ -16,10 +16,11 @@ module.exports = [
   { method: 'GET', path: '/poi/{id}', config: Dashboard.pointDetails},
 
   { method: 'GET',
-    path: '/{param*}',
+    path: '/images/{param*}',
     handler: {
       directory: {
-        path: './public'
+        path: './public/images',
+        listing: true
       }
     },
     options: { auth: false }
