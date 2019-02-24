@@ -2,10 +2,12 @@
 
 <section class="ui raised segment">
   <div class="ui grid">
-    <aside class="six wide column"><img src="images/poi.jpg" class="ui medium image"/></aside>
+    <aside class="six wide column">
+      <header class="ui header">Add Point of Interest</header>
+      {{> addpoint }}
+    </aside>
     <article class="ten wide column">
       <header class="ui header">Explore Islands of Ireland</header>
-      {{> addpoint }}
       {{> pointlist }}
     </article>
   </div>

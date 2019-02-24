@@ -2,7 +2,21 @@
 
 <section class="ui stacked segment">
   <div class="ui grid">
-    <aside class="six wide column"><img src="/images/poi2.jpg" class="ui medium image"></aside>
+    <aside class="six wide column">
+      <div class="ui segment">
+        {{#if point.imageUrl}}
+          <img src="{{point.imageUrl}}" class="ui meduim image">
+        {{/if}}
+      </div>
+      <div class="ui segment">
+        <form action="/poi/addPhoto/{{point.id}}" enctype="multipart/form-data" method="POST">
+          <h3 class="ui header">Add Photo</h3>
+          <input type="file" name="image">
+          <input type="submit" value="Upload">
+        </form>
+        {{> error}}
+      </div>
+    </aside>
     <article class="ten wide column">
       <div class="ui segment">
         <header class="ui header">{{point.name}}</header>

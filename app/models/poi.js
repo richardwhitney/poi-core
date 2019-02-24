@@ -5,7 +5,8 @@ const Schema = Mongoose.Schema;
 
 const poiSchema = new Schema({
   name: String,
-  description: String
+  description: String,
+  imageUrl: String
 });
 
 module.exports = Mongoose.model('PointOfInterest', poiSchema);

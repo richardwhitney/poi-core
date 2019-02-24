@@ -14,6 +14,7 @@ module.exports = [
   { method: 'GET', path: '/home', config: Dashboard.home},
   { method: 'POST', path: '/addpoint', config: Dashboard.addPointOfInterest},
   { method: 'GET', path: '/poi/{id}', config: Dashboard.pointDetails},
+  { method: 'POST', path: '/poi/addPhoto/{id}', config: Dashboard.addPhoto},
 
   { method: 'GET',
     path: '/images/{param*}',
