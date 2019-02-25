@@ -18,6 +18,9 @@ module.exports = [
 
   { method: 'POST', path: '/poi/addPhoto/{id}', config: PointOfInterestController.addPhoto},
   { method: 'GET', path: '/poi/deletePoint/{id}', config: PointOfInterestController.deletePoint},
+  { method: 'GET', path: '/updatepoi/{id}', config: PointOfInterestController.showPointSettings},
+  { method: 'POST', path: '/poi/updatepoi/{id}', config: PointOfInterestController.updatePoint},
+
   { method: 'GET',
     path: '/images/{param*}',
     handler: {

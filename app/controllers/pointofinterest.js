@@ -62,6 +62,48 @@ const PointOfInterestController = {
         return h.view('main', { errors:[{ message: e.message}]});
       }
     }
+  },
+  showPointSettings: {
+    handler: async function(request, h) {
+      try {
+        const point = await PointOfInterest.findById(request.params.id);
+        return h.view('updatepoi', { title: 'Update POI', point: point});
+      } catch (e) {
+        return h.view('main', { errors:[{ message: e.message}]});
+      }
+    }
+  },
+  updatePoint: {
+    validate: {
+      payload: {
+        name: Joi.string().required(),
+        description: Joi.string().required()
+      },
+      options: {
+        abortEarly: false
+      },
+      failAction: function (request, h, error) {
+        return h.view('updatepoi', {
+          title: 'Update POI Error',
+          errors: error.details
+        }).takeover().code(400);
+      }
+    },
+    handler: async function(request, h) {
+      try {
+        const pointEdit = request.payload;
+        const point = await PointOfInterest.findById(request.params.id);
+        point.name = pointEdit.name;
+        point.description = pointEdit.description;
+        await point.save();
+        return h.view('poi', {
+          title: 'Explore Island of Ireland',
+          point: point
+        });
+      } catch (e) {
+        return h.view('main', { errors:[{ messge: e.message}]});
+      }
+    }
   }
 };
 
