@@ -17,8 +17,7 @@ require('./app/models/db');
 
 // Create local server object
 const server = Hapi.server({
-  port: 3000,
-  host: "localhost"
+  port: process.env.PORT || 3000,
 });
 
 // Init function to start server
