@@ -3,6 +3,7 @@
 const PointOfInterest = require('../models/poi');
 const Joi = require('joi');
 const cloudinary = require('cloudinary');
+const Boom = require('boom');
 
 if (typeof (process.env.CLOUDINARY_URL) == 'undefined') {
   console.warn('!! cloudinary config is undefined !!');
@@ -18,29 +19,33 @@ const PointOfInterestController = {
     payload: {
       maxBytes: 209715200,
       output: 'file',
-      parse: true
+      parse: true,
+      allow: 'multipart/form-data'
     },
     handler: async function(request, h) {
       try {
         console.log("Point id: " + request.params.id);
         const point = await PointOfInterest.findById(request.params.id);
-        const file = request.payload.image.path;
-        const data = request.payload;
-        console.log('path: ' + file);
-        if (request.body) {
-          console.log("Data");
-        }
-        cloudinary.uploader.upload(file, { tags: 'poi_test'})
-          .then(async function (image) {
-            console.log("file uploaded to cloudinary");
-            console.dir(image);
-            point.imageUrl = image.secure_url;
+        const data = request.payload.image;
+        const filePath = data.path;
+        if (data.bytes) {
+          await cloudinary.uploader.upload(filePath, async function (result) {
+            point.imageUrl = result.secure_url;
             await point.save();
           });
-        return h.view('poi', {
-          title: 'Explore Island of Ireland',
-          point: point
-        });
+          return h.view('poi', {
+            title: 'Explore Island of Ireland',
+            point: point
+          });
+        }
+        else {
+          const message = 'No file chosen';
+          return h.view('poi', {
+            title: 'Explore Island of Ireland',
+            point: point,
+            errors:[{ message: message}]
+          })
+        }
       } catch (e) {
         return h.view('main', { errors:[{ message: e.message}]});
       }
