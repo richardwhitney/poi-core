@@ -1,5 +1,6 @@
 const Accounts = require('./app/controllers/accounts');
 const Dashboard = require('./app/controllers/dashboard');
+const AdminDashboard = require('./app/controllers/admin-dashboard')
 const PointOfInterestController = require('./app/controllers/pointofinterest');
 
 module.exports = [
@@ -15,6 +16,9 @@ module.exports = [
   { method: 'GET', path: '/home', config: Dashboard.home},
   { method: 'POST', path: '/addpoint', config: Dashboard.addPointOfInterest},
   { method: 'GET', path: '/poi/{id}', config: Dashboard.pointDetails},
+
+  { method: 'GET', path: '/adminhome', config: AdminDashboard.home},
+  { method: 'GET', path: '/adminhome/deleteuser/{id}', config: AdminDashboard.deleteUser},
 
   { method: 'POST', path: '/poi/addPhoto/{id}', config: PointOfInterestController.addPhoto},
   { method: 'GET', path: '/poi/deletePoint/{id}', config: PointOfInterestController.deletePoint},

@@ -22,4 +22,4 @@ adminSchema.methods.comparePassword = function(candidatePassword) {
   return this;
 };
 
-module.exports = Mongoose.model('User', adminSchema);
+module.exports = Mongoose.model('Admin', adminSchema);
