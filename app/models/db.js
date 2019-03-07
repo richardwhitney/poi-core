@@ -17,6 +17,7 @@ const db = Mongoose.connection;
 async function seed() {
   var seeder = require('mais-mongoose-seeder')(Mongoose);
   const data = require('./initdata');
+  const Category = require('./category');
   const PointOfInterest = require('./poi');
   const User = require('./user');
   const dbData = await seeder.seed(data, { dropDatabase: false, dropCollections: true});

@@ -3,12 +3,14 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Category</th>
       </tr>
     </thead>
     <tbody>
       {{#each points}}
         <tr>
           <td><a class="header" a href="/poi/{{id}}">{{name}}</a></td>
+          <td>{{category.name}}</td>
         </tr>
       {{/each}}
     </tbody>

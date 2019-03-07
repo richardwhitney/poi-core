@@ -6,7 +6,7 @@ const Joi = require('joi');
 const Dashboard = {
   home: {
     handler: async function (request, h) {
-      const pointsofInterest = await PointOfInterest.find();
+      const pointsofInterest = await PointOfInterest.find().populate('category');
       return h.view('dashboard', {
         title: 'Explore Islands of Ireland',
         points: pointsofInterest
