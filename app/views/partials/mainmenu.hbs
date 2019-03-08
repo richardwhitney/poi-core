@@ -1,12 +1,26 @@
 <nav class="ui inverted menu">
-  <header class="header item"><a href="/">Islands of Ireland</a></header>
+  <header class="header item"><a id="sidemenu">Menu</a></header>
   <div class="right menu">
     <a id="home" class="item" href="/home">IoI</a>
     <a id="settings" class="item" href="/settings">Settings</a>
     <a id="logout" class="item" href="/logout">Logout</a>
   </div>
 </nav>
-
+<nav class="ui left vertical inverted menu sidebar">
+  <header class="header item">Categories</header>
+  <a class="item">
+    Item 1
+  </a>
+  <a class="item">
+    Item 2
+  </a>
+  <a class="item">
+    Item 3
+  </a>
+</nav>
 <script>
   $("#{{_id}}").addClass("active item");
+  $('#sidemenu').click(function() {
+    $('.ui.sidebar').sidebar('toggle');
+  })
 </script>
