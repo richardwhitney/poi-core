@@ -2,6 +2,7 @@
 
 const User = require('../models/user');
 const Admin = require('../models/admin');
+const Category = require('../models/category');
 const Boom = require('boom');
 const Joi = require('joi');
 
@@ -119,7 +120,12 @@ const Accounts = {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
-        return h.view('settings', { title: 'IoI Settings', user: user});
+        const categories = await Category.find();
+        return h.view('settings',
+          { title: 'IoI Settings',
+            user: user,
+            categories: categories
+          });
       } catch (e) {
         return h.view('login', { errors:[{ message: e.message}]});
       }

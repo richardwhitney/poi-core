@@ -2,6 +2,7 @@ const Accounts = require('./app/controllers/accounts');
 const Dashboard = require('./app/controllers/dashboard');
 const AdminDashboard = require('./app/controllers/admin-dashboard')
 const PointOfInterestController = require('./app/controllers/pointofinterest');
+const Category = require('./app/controllers/category-controller');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index},
@@ -24,6 +25,8 @@ module.exports = [
   { method: 'GET', path: '/poi/deletePoint/{id}', config: PointOfInterestController.deletePoint},
   { method: 'GET', path: '/updatepoi/{id}', config: PointOfInterestController.showPointSettings},
   { method: 'POST', path: '/poi/updatepoi/{id}', config: PointOfInterestController.updatePoint},
+
+  { method: 'POST', path: '/addcategory', config: Category.addCategory},
 
   { method: 'GET',
     path: '/images/{param*}',
