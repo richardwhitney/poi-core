@@ -20,7 +20,10 @@
   "categories": {
     "_model": "Category",
     "one": {
-      "name": "Test Category"
+      "name": "Test Category",
+      "points": [
+
+      ]
     }
   },
   "points": {

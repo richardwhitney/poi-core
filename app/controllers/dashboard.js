@@ -8,7 +8,7 @@ const Dashboard = {
   home: {
     handler: async function (request, h) {
       const pointsofInterest = await PointOfInterest.find().populate('category');
-      const categories = await Category.find();
+      const categories = await Category.find().populate('points');
       return h.view('dashboard', {
         title: 'Explore Islands of Ireland',
         points: pointsofInterest,
@@ -50,6 +50,8 @@ const Dashboard = {
           category: category._id
         });
         await newPoint.save();
+        category.points.push(newPoint._id);
+        await category.save();
         return h.redirect('/home');
       } catch (e) {
         return h.view('main', { errors:[{ message: e.message}]});
@@ -61,9 +63,11 @@ const Dashboard = {
       try {
         console.log("Point selected: " + request.params.id);
         const point = await PointOfInterest.findById(request.params.id);
+        const categories = await Category.find().populate('points');
         return h.view('poi', {
           title: 'Explore Island of Ireland',
-          point: point
+          point: point,
+          categories: categories
         });
       } catch (e) {
         return h.view('main', { errors:[{ message: e.message}]});

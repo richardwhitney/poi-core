@@ -120,7 +120,7 @@ const Accounts = {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
-        const categories = await Category.find();
+        const categories = await Category.find().populate('points');
         return h.view('settings',
           { title: 'IoI Settings',
             user: user,
