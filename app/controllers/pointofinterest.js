@@ -4,6 +4,7 @@ const PointOfInterest = require('../models/poi');
 const Joi = require('joi');
 const cloudinary = require('cloudinary');
 const Boom = require('boom');
+const Catagory = require('../models/category');
 
 if (typeof (process.env.CLOUDINARY_URL) == 'undefined') {
   console.warn('!! cloudinary config is undefined !!');
@@ -26,6 +27,7 @@ const PointOfInterestController = {
       try {
         console.log("Point id: " + request.params.id);
         const point = await PointOfInterest.findById(request.params.id);
+        const categories = await Catagory.find().populate('points');
         const data = request.payload.image;
         const filePath = data.path;
         if (data.bytes) {
@@ -35,7 +37,8 @@ const PointOfInterestController = {
           });
           return h.view('poi', {
             title: 'Explore Island of Ireland',
-            point: point
+            point: point,
+            categories: categories
           });
         }
         else {
@@ -43,6 +46,7 @@ const PointOfInterestController = {
           return h.view('poi', {
             title: 'Explore Island of Ireland',
             point: point,
+            categories: categories,
             errors:[{ message: message}]
           })
         }

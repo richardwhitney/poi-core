@@ -64,7 +64,7 @@ const Accounts = {
   showLogin: {
     auth: false,
     handler: function (request, h) {
-      return h.view('Login', { title: 'Login to IoI'});
+      return h.view('login', { title: 'Login to IoI'});
     }
   },
   login: {
