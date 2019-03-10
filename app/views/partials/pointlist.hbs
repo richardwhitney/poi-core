@@ -1,18 +1,21 @@
-<section class="ui raised segment">
-  <table class="ui celled table segment">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Category</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each points}}
+{{#each points}}
+  <section class="ui clearing raised segment">
+    <table class="ui celled table segment">
+      <thead>
         <tr>
-          <td><a class="header" a href="/poi/{{id}}">{{name}}</a></td>
+          <th>Name</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{name}}</td>
           <td>{{category.name}}</td>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</section>
+      </tbody>
+    </table>
+    <div class="ui container">
+      <a href="/poi/{{id}}"><button class="ui blue right floated button">View<i class="chevron right icon"></i></button></a>
+    </div>
+  </section>
+{{/each}}
