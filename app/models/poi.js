@@ -10,6 +10,10 @@ const poiSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category'
+  },
+  addedBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

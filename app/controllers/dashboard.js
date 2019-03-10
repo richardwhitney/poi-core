@@ -3,11 +3,12 @@
 const PointOfInterest = require('../models/poi');
 const Category = require('../models/category');
 const Joi = require('joi');
+const User = require('../models/user');
 
 const Dashboard = {
   home: {
     handler: async function (request, h) {
-      const pointsofInterest = await PointOfInterest.find().populate('category');
+      const pointsofInterest = await PointOfInterest.find().populate('category').populate('addedBy');
       const categories = await Category.find().populate('points');
       return h.view('dashboard', {
         title: 'Explore Islands of Ireland',
@@ -44,10 +45,13 @@ const Dashboard = {
         const category = await Category.findOne({
           name: rawCategory
         });
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id);
         const newPoint = new PointOfInterest({
           name: data.name,
           description: data.description,
-          category: category._id
+          category: category._id,
+          addedBy: user
         });
         await newPoint.save();
         category.points.push(newPoint._id);
