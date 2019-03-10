@@ -4,6 +4,21 @@
   <div class="ui stacked fluid form segment">
     <form action="/poi/updatepoi/{{point.id}}" method="POST">
       <div class="field">
+        <label>Category</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="category">
+          <i class="ui dropdown icon"></i>
+          <div class="text">
+            {{point.category.name}}
+          </div>
+          <div class="menu">
+            {{#each categories}}
+              <div class="item" data-value="{{name}}">{{name}}</div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="field">
         <label>Name</label>
         <input value="{{point.name}}" type="text" name="name">
       </div>

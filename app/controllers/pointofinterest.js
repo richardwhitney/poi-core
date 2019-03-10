@@ -75,7 +75,7 @@ const PointOfInterestController = {
   showPointSettings: {
     handler: async function(request, h) {
       try {
-        const point = await PointOfInterest.findById(request.params.id);
+        const point = await PointOfInterest.findById(request.params.id).populate('category');
         const categories = await Catagory.find().populate('points');
         return h.view('updatepoi',
           { title: 'Update POI',
@@ -90,15 +90,20 @@ const PointOfInterestController = {
   updatePoint: {
     validate: {
       payload: {
+        category: Joi.string().required(),
         name: Joi.string().required(),
         description: Joi.string().required()
       },
       options: {
         abortEarly: false
       },
-      failAction: function (request, h, error) {
+      failAction: async function (request, h, error) {
+        const point = await PointOfInterest.findById(request.params.id);
+        const categories = await Catagory.find().populate('points');
         return h.view('updatepoi', {
           title: 'Update POI Error',
+          point: point,
+          categories: categories,
           errors: error.details
         }).takeover().code(400);
       }
@@ -106,7 +111,7 @@ const PointOfInterestController = {
     handler: async function(request, h) {
       try {
         const pointEdit = request.payload;
-        const point = await PointOfInterest.findById(request.params.id);
+        const point = await PointOfInterest.findById(request.params.id).populate('category');
         const categories = await Catagory.find().populate('points');
         point.name = pointEdit.name;
         point.description = pointEdit.description;
