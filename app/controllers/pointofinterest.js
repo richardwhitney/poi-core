@@ -76,7 +76,12 @@ const PointOfInterestController = {
     handler: async function(request, h) {
       try {
         const point = await PointOfInterest.findById(request.params.id);
-        return h.view('updatepoi', { title: 'Update POI', point: point});
+        const categories = await Catagory.find().populate('points');
+        return h.view('updatepoi',
+          { title: 'Update POI',
+            point: point,
+            categories: categories
+          });
       } catch (e) {
         return h.view('main', { errors:[{ message: e.message}]});
       }
@@ -102,12 +107,14 @@ const PointOfInterestController = {
       try {
         const pointEdit = request.payload;
         const point = await PointOfInterest.findById(request.params.id);
+        const categories = await Catagory.find().populate('points');
         point.name = pointEdit.name;
         point.description = pointEdit.description;
         await point.save();
         return h.view('poi', {
           title: 'Explore Island of Ireland',
-          point: point
+          point: point,
+          categories: categories
         });
       } catch (e) {
         return h.view('main', { errors:[{ messge: e.message}]});
