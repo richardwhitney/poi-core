@@ -30,8 +30,9 @@ module.exports = [
   { method: 'POST', path: '/addcategory', config: Category.addCategory},
 
   { method: 'GET',
-    path: 'testlb',
+    path: '/testlb',
     handler: function(request, h) {
+      console.log('Server: ' + os.hostname());
       return('Server: ' + os.hostname());
     }
   },

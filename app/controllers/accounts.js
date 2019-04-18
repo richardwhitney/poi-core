@@ -5,11 +5,13 @@ const Admin = require('../models/admin');
 const Category = require('../models/category');
 const Boom = require('boom');
 const Joi = require('joi');
+const os = require('os');
 
 const Accounts = {
   index: {
     auth: false,
     handler: function (request, h) {
+      console.log('Server: ' + os.hostname());
       return h.view('main', {title: 'Welcome to Islands of Ireland'});
     }
   },
