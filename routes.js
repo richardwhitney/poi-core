@@ -3,6 +3,7 @@ const Dashboard = require('./app/controllers/dashboard');
 const AdminDashboard = require('./app/controllers/admin-dashboard')
 const PointOfInterestController = require('./app/controllers/pointofinterest');
 const Category = require('./app/controllers/category-controller');
+const os = require('os');
 
 module.exports = [
   { method: 'GET', path: '/', config: Accounts.index},
@@ -27,6 +28,13 @@ module.exports = [
   { method: 'POST', path: '/poi/updatepoi/{id}', config: PointOfInterestController.updatePoint},
 
   { method: 'POST', path: '/addcategory', config: Category.addCategory},
+
+  { method: 'GET',
+    path: 'testlb',
+    handler: function(request, h) {
+      return('Server: ' + os.hostname());
+    }
+  },
 
   { method: 'GET',
     path: '/images/{param*}',
