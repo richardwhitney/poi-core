@@ -29,13 +29,7 @@ module.exports = [
 
   { method: 'POST', path: '/addcategory', config: Category.addCategory},
 
-  { method: 'GET',
-    path: '/testlb',
-    handler: function(request, h) {
-      console.log('Server: ' + os.hostname());
-      return('Server: ' + os.hostname());
-    }
-  },
+  { method: 'GET', path: '/testlb', config: Accounts.showTest},
 
   { method: 'GET',
     path: '/images/{param*}',

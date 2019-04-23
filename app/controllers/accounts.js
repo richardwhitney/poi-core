@@ -11,8 +11,14 @@ const Accounts = {
   index: {
     auth: false,
     handler: function (request, h) {
-      console.log('Server: ' + os.hostname());
       return h.view('main', {title: 'Welcome to Islands of Ireland'});
+    }
+  },
+  showTest: {
+    auth: false,
+    handler: function (request, h) {
+      console.log('Server: ' + os.hostname());
+      return h.view('test', { test: 'Server: ' + os.hostname()});
     }
   },
   showSignup: {
