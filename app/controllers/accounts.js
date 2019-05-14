@@ -6,6 +6,8 @@ const Category = require('../models/category');
 const Boom = require('boom');
 const Joi = require('joi');
 const os = require('os');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const Accounts = {
   index: {
@@ -55,11 +57,14 @@ const Accounts = {
           const message = 'Email address is already registered';
           throw new Boom(message);
         }
+
+        const hash = await bcrypt.hash(payload.password, saltRounds);
+
         const newUser = new User({
           firstName: payload.firstName,
           lastName: payload.lastName,
           email: payload.email,
-          password: payload.password
+          password: hash
         });
         user = await newUser.save();
         request.cookieAuth.set({ id: user.id });
@@ -98,9 +103,14 @@ const Accounts = {
         let user = await User.findByEmail(email)
         let admin = await Admin.findByEmail(email);
         if (user) {
-          user.comparePassword(password);
-          request.cookieAuth.set({ id: user.id });
-          return h.redirect('/home');
+          if (!await user.comparePassword(password)) {
+            const message = 'Password mismatch';
+            throw new Boom(message);
+          }
+          else {
+            request.cookieAuth.set({ id: user.id });
+            return h.redirect('/home');
+          }
         }
         else if (admin) {
           admin.comparePassword(password);
@@ -162,10 +172,13 @@ const Accounts = {
         const userEdit = request.payload;
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
+
+        const hash = await bcrypt.hash(userEdit.password, saltRounds);
+
         user.firstName = userEdit.firstName;
         user.lastName = userEdit.lastName;
         user.email = userEdit.email;
-        user.password = userEdit.password;
+        user.password = hash;
         await user.save();
         return h.redirect('/settings');
       } catch (e) {

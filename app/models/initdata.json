@@ -5,31 +5,31 @@
       "firstName": "Homer",
       "lastName": "Simpson",
       "email": "homer@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$HnapEWWKQQ0.0Ft33nXxtuJ0fsmd9ywYswEzT4C.6Ul5y6cOU.UEa"
     },
     "marge": {
       "firstName": "Marge",
       "lastName": "Simpson",
       "email": "marge@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$D3TWK8MSAh63Lhk4gIFSJ.ekM368J88qJRUYSbuBfzffex6B0dFwK"
     },
     "lisa": {
       "firstName": "Lisa",
       "lastName": "Simpson",
       "email": "lisa@simpson.com",
-      "password": "secret"
+      "password": "2a$10$uqnPlgyVjBEOtcgMhn/WRO3FwW4T9gX36tTB4RqpGeB/LkCR3YQuO"
     },
     "maggie": {
       "firstName": "Maggie",
       "lastName": "Simpson",
       "email": "maggie@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$HUzrPD2JxHWU8Z6J.RYj7uY0uAEvyYRPSesaAPSrUJpawUuKbljbi"
     },
     "ned": {
       "firstName": "Ned",
       "lastName": "Flanders",
       "email": "ned@flanders.com",
-      "password": "secret"
+      "password": "$2a$10$zGiHxTKc4torCA8FL9CVGOfTj9fVeitCj586NvdrhAO/lmZ3Crusm"
     }
   },
   "admins": {
