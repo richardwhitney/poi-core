@@ -7,6 +7,7 @@
 const Hapi = require("hapi");
 const dotenv = require('dotenv');
 const result = dotenv.config();
+const fs = require('fs');
 
 if (result.error) {
   console.log(result.error.message);
@@ -17,7 +18,11 @@ require('./app/models/db');
 
 // Create local server object
 const server = Hapi.server({
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3443,
+  tls: {
+    key: fs.readFileSync('private/webserver.key'),
+    cert: fs.readFileSync('private/webserver.crt')
+  }
 });
 
 // Init function to start server
