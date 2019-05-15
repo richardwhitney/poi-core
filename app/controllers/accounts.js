@@ -109,6 +109,8 @@ const Accounts = {
           }
           else {
             request.cookieAuth.set({ id: user.id });
+            console.log('User logged in');
+            console.log(user);
             return h.redirect('/home');
           }
         }
@@ -155,7 +157,7 @@ const Accounts = {
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
         email: Joi.string().email().required(),
-        passowrd: Joi.string().required()
+        password: Joi.string().required()
       },
       options: {
         abortEarly: false
