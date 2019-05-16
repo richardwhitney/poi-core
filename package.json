@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/bell": "^10.1.0",
     "bcrypt": "^3.0.6",
+    "bell": "^10.0.0",
     "boom": "^7.3.0",
     "cloudinary": "^1.13.2",
     "dotenv": "^6.2.0",
