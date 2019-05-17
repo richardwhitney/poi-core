@@ -18,11 +18,11 @@ require('./app/models/db');
 
 // Create local server object
 const server = Hapi.server({
-  port: process.env.PORT || 3443,
-  tls: {
+  port: process.env.PORT || 3000,
+  /*tls: {
     key: fs.readFileSync('private/webserver.key'),
     cert: fs.readFileSync('private/webserver.crt')
-  }
+  }*/
 });
 
 // Init function to start server
