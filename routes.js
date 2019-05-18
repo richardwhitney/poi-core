@@ -17,6 +17,7 @@ module.exports = [
 
   { method: 'GET', path: '/home', config: Dashboard.home},
   { method: 'POST', path: '/addpoint', config: Dashboard.addPointOfInterest},
+  { method: 'POST', path: '/addstudent', config: Dashboard.addStudent},
   { method: 'GET', path: '/poi/{id}', config: Dashboard.pointDetails},
 
   { method: 'GET', path: '/adminhome', config: AdminDashboard.home},

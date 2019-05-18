@@ -1,6 +1,7 @@
 'use strict';
 
 const PointOfInterest = require('../models/poi');
+const Student = require('../models/student');
 const Category = require('../models/category');
 const Joi = require('joi');
 const User = require('../models/user');
@@ -10,11 +11,26 @@ const Dashboard = {
     handler: async function (request, h) {
       const pointsofInterest = await PointOfInterest.find().populate('category').populate('addedBy');
       const categories = await Category.find().populate('points');
+      const students = await Student.find();
       return h.view('dashboard', {
         title: 'Explore Islands of Ireland',
         points: pointsofInterest,
-        categories: categories
+        categories: categories,
+        students: students
       });
+    }
+  },
+  addStudent: {
+    handler: async function(request, h) {
+      const data = request.payload;
+      const newStudent = new Student({
+        studentnumber: data.studentnumber,
+        name: data.name,
+        college: data.college,
+        country: data.country
+      });
+      await newStudent.save();
+      return h.redirect('/home');
     }
   },
   addPointOfInterest: {
