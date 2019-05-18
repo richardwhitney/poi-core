@@ -32,6 +32,13 @@ module.exports = [
   { method: 'GET', path: '/testlb', config: Accounts.showTest},
 
   { method: 'GET',
+    path: '/xssdemo/{user}',
+    handler: function (request, reply) {
+      return 'Welcome ' + request.params.user;
+    }
+  },
+
+  { method: 'GET',
     path: '/images/{param*}',
     handler: {
       directory: {
