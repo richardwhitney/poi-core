@@ -49,6 +49,7 @@ async function init() {
     password: process.env.cookie_password,
     cookie: process.env.cookie_name,
     isSecure: false,
+    isHttpOnly: false,
     ttl: 24 * 60 * 60 * 1000,
     redirectTo: '/'
   };

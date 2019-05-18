@@ -75,15 +75,9 @@ const Accounts = {
     }
   },
   showLogin: {
-    auth: 'github-oauth',
-    handler: async function (request, h) {
-      if (request.auth.isAuthenticated) {
-        request.cookieAuth.set(request.auth.credentials);
-        console.log('User logged in: ' + request.auth.credentials.profile.username);
-        return h.redirect('/home');
-      }
-      console.log('Login failed');
-      return h.redirect('/login');
+    auth: false,
+    handler: function (request, h) {
+      return h.view('login', { title: 'Login to IoI'});
     }
   },
   login: {
